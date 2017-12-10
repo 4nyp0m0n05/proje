@@ -2,6 +2,7 @@ package edu.sau.vtys.paylasim.domain;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Kullanici {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Kullanicilar_kull_id")
-  @SequenceGenerator(name="Kullanicilar_kull_id", sequenceName = "Kullanicilar_kull_id_seq")
+  @SequenceGenerator(name = "Kullanicilar_kull_id", sequenceName = "Kullanicilar_kull_id_seq")
   private Integer kull_id;
 
   private String kull_adi;
@@ -33,5 +34,8 @@ public class Kullanici {
   private String email;
 
   private String sifre;
+
+  @OneToMany(mappedBy = "kullanici", fetch = FetchType.EAGER)
+  private List<Paylasim> paylasimList;
 
 }
